@@ -11,14 +11,14 @@ print(st.__version__)
 print(tf.__version__)
 model = tf.keras.models.load_model("model.h5", compile=False)
 
-with open("onehot_encoder_geo.pkl","wb") as f:
-    pickle.dump(onehot_encoder_geo,f)
+with open("onehot_encoder_geo.pkl","rb") as f:
+    onehot_encoder_geo = pickle.load(f)
 
-with open("label_encoder_gender.pkl","wb") as f:
-    pickle.dump(label_encoder_gender,f)
+with open("label_encoder_gender.pkl","rb") as f:
+    label_encoder_gender = pickle.load(f)
 
-with open("scaler.pkl","wb") as f:
-    pickle.dump(scaler,f)
+with open("scaler.pkl","rb") as f:
+    scaler = pickle.load(f)
 
 st.title('Customer Churn Prediction') 
 
@@ -68,6 +68,7 @@ if prediction_proba > 0.5:
     st.write('The customer is likely to churn.')
 else:
     st.write('The customer is not likely to churn.')
+
 
 
 
