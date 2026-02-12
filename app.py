@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 import pandas as pd
 import pickle
 from tensorflow.keras.models import load_model
-from tensorflow import keras
+import keras
 print(keras.__version__)
 print(st.__version__)
 print(tf.__version__)
@@ -69,6 +69,7 @@ if prediction_proba > 0.5:
     st.write('The customer is likely to churn.')
 else:
     st.write('The customer is not likely to churn.')
+
 
 
 
