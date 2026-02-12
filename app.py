@@ -6,19 +6,20 @@ import pandas as pd
 import pickle
 from tensorflow.keras.models import load_model
 import keras
+model = tf.keras.models.load_model("model.h5", compile=False)
 print(keras.__version__)
 print(st.__version__)
 print(tf.__version__)
-model = tf.keras.models.load_model("model.h5", compile=False)
-
-with open("onehot_encoder_geo.pkl","rb") as f:
-    onehot_encoder_geo = pickle.load(f)
-
-with open("label_encoder_gender.pkl","rb") as f:
-    label_encoder_gender = pickle.load(f)
-
-with open("scaler.pkl","rb") as f:
-    scaler = pickle.load(f)
+import joblib
+ 
+# Load Label Encoder (Gender)
+label_encoder_gender = joblib.load("label_encoder_gender.joblib")
+ 
+# Load OneHot Encoder (Geography)
+onehot_encoder_geo = joblib.load("onehot_encoder_geo.joblib")
+ 
+# Load Scaler
+scaler = joblib.load("scaler.joblib")
 
 st.title('Customer Churn Prediction') 
 
@@ -68,9 +69,3 @@ if prediction_proba > 0.5:
     st.write('The customer is likely to churn.')
 else:
     st.write('The customer is not likely to churn.')
-
-
-
-
-
-
